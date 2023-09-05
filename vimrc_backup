@@ -1,0 +1,327 @@
+Python 3.8.10 (default, May 26 2023, 14:05:08)
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import this
+The Zen of Python, by Tim Peters
+
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one-- and preferably only one --obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea -- let's do more of those!
+>>> exit()
+vagrant@ubuntu-focal:~/alx-higher_level_programming/0x00-python-hello_world$ cd
+vagrant@ubuntu-focal:~$
+vagrant@ubuntu-focal:~$ cat .vimrc
+" This line is necessary to enable Vim-Plug
+call plug#begin('~/.vim/plugged')
+
+
+call plug#end()
+
+
+" Enable line numbers and relative line numbers for easier navigation
+set number
+set relativenumber
+
+" Highlight search results as you type
+set incsearch
+
+" Enable syntax highlighting and enable line wrapping
+syntax enable
+set wrap
+
+" Set the tab width and enable expandtab (use spaces for tabs)
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+" Show a vertical line at 79 characters to encourage PEP8 compliant line length
+set colorcolumn=80
+
+" Enable auto-indentation and smart indenting for Python files
+filetype plugin indent on
+set smartindent
+set autoindent
+
+" Enable line wrapping at the specified textwidth
+set textwidth=79
+
+" Enable auto pairing of parentheses, brackets, and quotes
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+
+" Enable code folding for Python functions and classes
+set foldmethod=indent
+set foldlevel=99
+
+" Use a dark color scheme for better readability during coding sessions
+colorscheme desert
+
+" Enable mouse support (optional)
+set mouse=a
+
+" Highlight the current line
+set cursorline
+
+" Enable auto-completion with YouCompleteMe (if installed)
+" let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Map F9 to toggle line numbers
+nnoremap <F9> :set number!<CR>
+
+" Map F8 to toggle paste mode (useful for pasting code from clipboard)
+nnoremap <F8> :set paste!<CR>
+set pastetoggle=<F8>
+
+" Map Ctrl-S to save the current file
+nnoremap <C-S> :w<CR>
+inoremap <C-S> <Esc>:w<CR>
+
+" Map Ctrl-Q to quit Vim without saving
+nnoremap <C-Q> :q!<CR>
+inoremap <C-Q> <Esc>:q!<CR>
+
+" Map Ctrl-X to close the current buffer
+nnoremap <C-X> :bd<CR>
+
+" Display matching parentheses when the cursor is over one
+set showmatch
+
+" Enable easy switching between open buffers
+nnoremap <leader><tab> :bnext<CR>
+nnoremap <leader><S-tab> :bprev<CR>
+
+" Enable easy navigation between windows using Ctrl + Arrow keys
+nnoremap <C-Left> <C-W>h
+nnoremap <C-Right> <C-W>l
+nnoremap <C-Up> <C-W>k
+nnoremap <C-Down> <C-W>j
+
+" Enable easy resizing of split windows
+nnoremap <Up> <C-W>+
+nnoremap <Down> <C-W>-
+nnoremap <Left> <C-W><
+nnoremap <Right> <C-W>>
+
+" Enable auto-saving the buffer when switching between buffers
+augroup autosave
+    autocmd!
+    autocmd BufLeave * silent! wall
+augroup END
+
+
+
+
+
+
+
+set textwidth=70 "Wrap text at 70 characters per line
+set wrap
+set linebreak
+set showmatch
+set listchars=tab:»·,trail:·
+set spell
+set tabstop=4 shiftwidth=4
+set cindent
+syntax enable
+set number
+set list
+
+"autocmd BufWritePre * :%s/^\s*// "Remove Spaces at the start of a line
+
+"autocmd BufWritePre * :%s/\s\+$//e  "Remove trailing whitespace when saving
+
+highlight ExtraWhitespace ctermbg =red guibg=red
+
+
+
+
+
+
+
+
+
+" Custom mappings for Betty-style coding
+autocmd FileType c nnoremap <buffer> <F5> :call InsertFunctionDescription()<CR>
+
+function! InsertFunctionDescription()
+let l:line = getline('.')
+let l:current_word = expand('<cword>')
+let l:current_function = matchstr(l:line, '^[a-zA-Z_][a-zA-Z0-9_]*\s*(')
+
+if l:current_function != ''
+let l:prefix = substitute(l:current_function, '(\s*$', '', '')
+let l:description = substitute(l:prefix, '^[a-zA-Z_][a-zA-Z0-9_]*\s*', '', '')
+let l:indentation = substitute(l:line, '\v^\s*', '', '')
+let l:tabstop = &tabstop
+let &tabstop = 2
+
+execute "normal! O" . l:indentation . "* " . l:prefix . " - " . l:description
+
+let &tabstop = l:tabstop
+endif
+endfunction
+
+
+
+call plug#begin('~/.vim/plugged')
+
+" List your plugins here
+" Example: Plug 'user/repo'
+Plug 'christoomey/vim-tmux-navigator'
+
+call plug#end()
+
+
+
+" Switch to the terminal pane
+nnoremap <C-h> <C-\><C-n><C-w>h
+
+" Switch to the code pane
+nnoremap <C-l> <C-\><C-n><C-w>l
+
+
+
+
+
+
+" Auto indent on opening curly brace
+inoremap {<CR> {<CR>}<Esc>O
+
+
+" Auto-complete/close in insert mode
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+
+
+" Auto-completion for square brackets
+inoremap [ []<Left>
+
+" Auto-completion for curly brackets
+inoremap { {<CR>}<Esc>O<Esc>^
+
+
+
+
+
+
+" semicolon on visual/insert mode
+nnoremap ; :
+vnoremap ; :
+
+" paste the last thing yanked, not delete
+nmap ,p "0p
+nmap ,P "0P
+
+
+
+" Enable Betty style
+autocmd FileType c setlocal formatoptions+=cro
+
+" Enable trailing newline check
+let g:syntastic_c_checkers = ['style', 'clang']
+
+
+" Define the autocmd to display preformatted text for .c files
+autocmd BufNewFile *.c call CustomPreformattedText()
+
+" Function to display preformatted text
+function! CustomPreformattedText()
+" Check if the file is empty
+if line('$') == 1 && getline(1) == ''
+" Insert the preformatted text
+put='/**'
+put=' * functionName -Description'
+put=' * @p1: parameter1'
+put=' * Return: Always 0 (Success)'
+put=' */'
+put=''
+put='#include <stdio.h>'
+put=''
+put='{'
+put=' '
+put='    /* Your code here */'
+put=''
+put='return (0)'
+put='}'
+endif
+endfunction
+
+
+
+
+
+
+" Set split window layout
+set splitbelow       " Split new windows below the current window
+set splitright       " Split new windows to the right of the current window
+
+" Set initial window sizes
+set winwidth=85      " Set the width of the windows
+set winheight=10     " Set the height of the windows
+
+" Switch between panes using Ctrl + hjkl
+""nnoremap <C-h> <C-w>h
+""nnoremap <C-j> <C-w>j
+""nnoremap <C-k> <C-w>k
+""nnoremap <C-l> <C-w>l
+
+
+
+" Switch between panes using Alt + hjkl
+""nnoremap <A-h> <C-w>h
+""nnoremap <A-j> <C-w>j
+""nnoremap <A-k> <C-w>k
+""nnoremap <A-l> <C-w>l
+
+" Switch between panes using <Leader> + hjkl
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
+
+
+
+
+
+" Resize panes
+nnoremap <C-Up>    <C-w>+      " Increase current pane height
+nnoremap <C-Down>  <C-w>-      " Decrease current pane height
+nnoremap <C-Left>  <C-w>>      " Increase current pane width
+nnoremap <C-Right> <C-w><      " Decrease current pane width
+
+" Open terminal in a vertical split and switch to it
+nnoremap <leader>t :vsplit term://$SHELL<CR><C-w>l
+
+" Set terminal settings
+autocmd BufEnter term://* startinsert
+autocmd BufLeave term://* stopinsert
+
+" Automatically resize panes when Vim is resized
+autocmd VimResized * wincmd =
+
+" Use syntax highlighting for C code
+syntax enable
+syntax on
+
+" Other Vim settings and plugins.
